@@ -50,6 +50,7 @@ jobs:
           args: >-
             --no-progress
             --max-retries 2
+            --exclude '^https://x\.com/'
             README.md
             README_CN.md
             CONTRIBUTING.md
