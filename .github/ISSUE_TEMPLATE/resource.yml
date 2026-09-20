@@ -1,0 +1,125 @@
+name: Recommend a resource
+description: Suggest one Jev resource for an existing category
+title: "[Resource]: "
+labels:
+  - resource-submission
+  - needs-review
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping curate Awesome Jev Hub. Submit exactly one resource and describe it objectively. Passing the form checks does not guarantee inclusion.
+
+  - type: input
+    id: resource_name
+    attributes:
+      label: Resource name
+      description: Use the official project, article, skill, or resource name.
+      placeholder: Jev Example Project
+    validations:
+      required: true
+
+  - type: input
+    id: resource_url
+    attributes:
+      label: Resource URL
+      description: Use a public canonical URL, preferably the source repository.
+      placeholder: https://github.com/owner/project
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Select the single best existing category.
+      options:
+        - Skills & Agents
+        - Developer Ecosystem
+        - Patterns & Cookbook
+        - Projects by Use Case
+        - Playgrounds & Reproducible Demos
+        - Benchmarks & Evidence
+        - Failures & Limitations
+        - Learn
+        - Open Alternatives
+        - Ecosystem Radar
+    validations:
+      required: true
+
+  - type: dropdown
+    id: resource_type
+    attributes:
+      label: Resource type
+      options:
+        - Skill or agent
+        - Project or integration
+        - Pattern or cookbook
+        - Playground or reproducible demo
+        - Benchmark or evaluation
+        - Failure report or limitation
+        - Tutorial or learning resource
+        - Open alternative
+        - Ecosystem update
+    validations:
+      required: true
+
+  - type: textarea
+    id: practical_value
+    attributes:
+      label: What does it help users do?
+      description: Describe the concrete task or decision this resource supports. Avoid promotional language.
+      placeholder: It helps developers...
+    validations:
+      required: true
+
+  - type: textarea
+    id: jev_relevance
+    attributes:
+      label: Why is it specifically relevant to Jev?
+      description: Explain the direct connection to Jev rather than AI models in general.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Link runnable code, tested steps, official documentation, reproducible measurements, or a documented real-world experience.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: language
+    attributes:
+      label: Primary language
+      options:
+        - English
+        - Chinese
+        - Multilingual
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: affiliation
+    attributes:
+      label: Affiliation disclosure
+      description: State whether you are the author, maintainer, employee, sponsor, or otherwise affiliated. Write "None" if unaffiliated.
+      placeholder: I am the author / None
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Submission checklist
+      options:
+        - label: I am submitting exactly one resource.
+          required: true
+        - label: I searched the README and existing issues or pull requests for duplicates.
+          required: true
+        - label: The resource is public, working, and directly relevant to Jev.
+          required: true
+        - label: I read and followed the contribution guide.
+          required: true

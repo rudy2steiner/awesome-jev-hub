@@ -1,0 +1,57 @@
+name: Validate
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  resources:
+    name: Resource entries
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Run validator tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Validate canonical README
+        run: python3 scripts/validate_resources.py README.md
+
+  markdown:
+    name: Markdown
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: DavidAnson/markdownlint-cli2-action@v24
+        with:
+          globs: |
+            README.md
+            README_CN.md
+            CONTRIBUTING.md
+            .github/**/*.md
+
+  links:
+    name: Public links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --max-retries 2
+            README.md
+            README_CN.md
+            CONTRIBUTING.md
+          fail: true
+          jobSummary: true

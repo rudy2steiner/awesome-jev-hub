@@ -1,45 +1,46 @@
 # Awesome Jev Hub
 
-> 中文优先、双语维护的 Jev 开发者实践中心：可信资源、可运行示例、Agent Skills、独立评测与生态动态。
+> An English-first, developer-focused hub for Jev: trusted resources, runnable examples, agent skills, independent evaluations, and ecosystem updates.
 
-[English](./README_EN.md)
+[中文](./README_CN.md) · [Submit a resource](https://github.com/rudy2steiner/awesome-jev-hub/issues/new?template=resource.yml) · [Contribution Guide](./CONTRIBUTING.md)
 
-## 目录
+## Contents
 
-- [Run Jev Now / 立即体验](#run-jev-now)
-- Jev on One Screen / 一屏认识 Jev
-- Know Before You Build / 开发前必读
-- Recently Added / 最近收录
-- Official & Access / 官方与接入
-- Skills & Agents / Skills 与 Agent
-- Developer Ecosystem / 开发生态
-- Patterns & Cookbook / 模式与实践
-- Projects by Use Case / 按场景浏览项目
-- Playgrounds & Reproducible Demos / 演示与复现
-- Benchmarks & Evidence / 评测与证据
-- Failures & Limitations / 失败实践与局限
-- Learn / 学习资料
-- Open Alternatives / 开源替代
-- Ecosystem Radar / 生态雷达
-- Contributing / 参与贡献
+- [Run Jev Now](#run-jev-now)
+- [Jev on One Screen](#jev-on-one-screen)
+- [Know Before You Build](#know-before-you-build)
+- [Recently Added](#recently-added)
+- [Official & Access](#official--access)
+- [Skills & Agents](#skills--agents)
+- [Developer Ecosystem](#developer-ecosystem)
+- [Patterns & Cookbook](#patterns--cookbook)
+- [Projects by Use Case](#projects-by-use-case)
+- [Playgrounds & Reproducible Demos](#playgrounds--reproducible-demos)
+- [Benchmarks & Evidence](#benchmarks--evidence)
+- [Failures & Limitations](#failures--limitations)
+- [Learn](#learn)
+- [Open Alternatives](#open-alternatives)
+- [Ecosystem Radar](#ecosystem-radar)
+- [Contributing](#contributing)
 
 <a id="run-jev-now"></a>
-## Run Jev Now / 立即体验
 
-想先跑起来，再研究原理？下面四个入口均来自 TypeSafe 官方资料，选择与你当前环境最接近的一种即可。
+## Run Jev Now
 
-> **来源状态：** Official · **最近核查：** 2026-09-21
+Want to run Jev before studying the details? These four paths come from TypeSafe's official resources. Pick the one closest to your current setup.
 
-| 路径 | 适合谁 | 前置条件 | 预计耗时 |
+> **Source status:** Official · **Last checked:** 2026-09-21
+
+| Path | Best for | Prerequisites | Time |
 | --- | --- | --- | --- |
-| [官方 Playground](https://console.typesafe.ai/playground) | 想先观察输入与结构化输出 | TypeSafe 账号 | 2–3 分钟 |
-| cURL / HTTP API | 想直接查看请求协议 | TypeSafe API Key、cURL | 5 分钟 |
-| Python 或 TypeScript SDK | 准备接入应用的开发者 | API Key；Python 3.10+ 或 Node.js 20+ | 10 分钟 |
-| 官方 Agent Skill | 使用 Claude Code、Codex、Cursor 等编码 Agent | Claude Code，或 Node.js 与 `npx` | 2 分钟 |
+| [Official Playground](https://console.typesafe.ai/playground) | Seeing the input and structured output first | TypeSafe account | 2–3 minutes |
+| cURL / HTTP API | Inspecting the request protocol directly | TypeSafe API key and cURL | 5 minutes |
+| Python or TypeScript SDK | Adding Jev to an application | API key; Python 3.10+ or Node.js 20+ | 10 minutes |
+| Official Agent Skill | Claude Code, Codex, Cursor, and other coding-agent users | Claude Code, or Node.js with `npx` | 2 minutes |
 
-### 1. 在线体验
+### 1. Try the Playground
 
-打开 [TypeSafe Playground](https://console.typesafe.ai/playground) 并登录，粘贴一段文本作为 `state`，再添加一个 Noul 问题：
+Open the [TypeSafe Playground](https://console.typesafe.ai/playground), sign in, paste some text as the `state`, and add a Noul question:
 
 ```json
 {
@@ -50,17 +51,17 @@
 }
 ```
 
-一次请求可以同时混用 Noul、Choice 和 Score。完整操作见 [官方 Quick Start](https://docs.typesafe.ai/introduction/quickstart)。
+One request can mix Noul, Choice, and Score questions. See the [official Quick Start](https://docs.typesafe.ai/introduction/quickstart) for the complete walkthrough.
 
-### 2. 第一次 API 调用
+### 2. Make Your First API Call
 
-先在 [TypeSafe Console](https://console.typesafe.ai/keys) 创建 API Key，并只通过环境变量保存：
+Create an API key in the [TypeSafe Console](https://console.typesafe.ai/keys), then keep it in an environment variable:
 
 ```bash
 export TYPESAFE_API_KEY="your-key"
 ```
 
-然后发送一个最小请求：
+Send a minimal request:
 
 ```bash
 curl -X POST https://api.typesafe.ai/v1/systemone \
@@ -80,11 +81,11 @@ curl -X POST https://api.typesafe.ai/v1/systemone \
 EOF
 ```
 
-请求会返回名为 `urgency` 的结构化答案，而不是生成一段文本。协议细节以 [官方 API Reference](https://docs.typesafe.ai/api) 为准。
+The response contains a structured answer named `urgency` instead of generated prose. Treat the [official API Reference](https://docs.typesafe.ai/api) as the source of truth for the protocol.
 
-### 3. 使用 SDK
+### 3. Use an SDK
 
-Python：
+Python:
 
 ```bash
 python -m pip install typesafe-sdk
@@ -106,7 +107,7 @@ response = client.system_one(
 print(response.answers["urgency"].noul)
 ```
 
-JavaScript / TypeScript：
+JavaScript / TypeScript:
 
 ```bash
 npm install @typesafe-ai/sdk
@@ -130,21 +131,89 @@ const response = await client.systemOne({
 console.log(response.answers.category.choice);
 ```
 
-参见官方 [Python SDK](https://docs.typesafe.ai/sdk/python) 与 [JavaScript SDK](https://docs.typesafe.ai/sdk/javascript)。
+See the official [Python SDK](https://docs.typesafe.ai/sdk/python) and [JavaScript SDK](https://docs.typesafe.ai/sdk/javascript) documentation.
 
-### 4. 安装官方 Agent Skill
+### 4. Install the Official Agent Skill
 
-Claude Code：
+Claude Code:
 
 ```bash
 claude plugin marketplace add typesafe-ai/skills
 claude plugin install typesafe@typesafe-ai
 ```
 
-其他支持 Skills 的 Agent：
+Other agents that support skills:
 
 ```bash
 npx skills add typesafe-ai/skills --skill typesafe-ai
 ```
 
-安装器会提示选择目标 Agent；默认安装到当前项目，添加 `-g` 可全局安装。源码与说明见 [typesafe-ai/skills](https://github.com/typesafe-ai/skills)。
+The installer prompts you to choose a target agent. Installation is project-local by default; add `-g` for a global installation. See [typesafe-ai/skills](https://github.com/typesafe-ai/skills) for the source and usage guide.
+
+## Jev on One Screen
+
+Jev is a model exposed through TypeSafe's System One API for turning input state into typed, structured answers. A request can ask several questions at once and combine Noul, Choice, and Score outputs. Start with [Run Jev Now](#run-jev-now), then use the official documentation as the protocol source of truth.
+
+## Know Before You Build
+
+- Prefer the official API reference over copied request examples because the model and SDKs can change quickly.
+- Keep API keys in environment variables or a secret manager; never commit them.
+- Record the model name, input, question definitions, and expected output shape in reproducible examples.
+- Treat community benchmarks as evidence for a specific setup, not as universal model rankings.
+
+## Recently Added
+
+- **2026-09-21:** Added the English quick start covering the Playground, HTTP API, Python and TypeScript SDKs, and the official Agent Skill.
+
+## Official & Access
+
+This section is maintained from first-party TypeSafe sources.
+
+- [Documentation](https://docs.typesafe.ai) — Product concepts, guides, SDK documentation, and API reference.
+- [Playground](https://console.typesafe.ai/playground) — Browser-based environment for trying Jev inputs and structured questions.
+- [Console](https://console.typesafe.ai/keys) — Account and API-key management.
+- [Official Agent Skill](https://github.com/typesafe-ai/skills) — TypeSafe's skill package for supported coding agents.
+
+## Skills & Agents
+
+_No entries yet. [Recommend a Skills & Agents resource](https://github.com/rudy2steiner/awesome-jev-hub/issues/new?template=resource.yml)._
+
+## Developer Ecosystem
+
+_No entries yet. [Recommend a Developer Ecosystem resource](https://github.com/rudy2steiner/awesome-jev-hub/issues/new?template=resource.yml)._
+
+## Patterns & Cookbook
+
+_No entries yet. [Recommend a Patterns & Cookbook resource](https://github.com/rudy2steiner/awesome-jev-hub/issues/new?template=resource.yml)._
+
+## Projects by Use Case
+
+_No entries yet. [Recommend a Projects by Use Case resource](https://github.com/rudy2steiner/awesome-jev-hub/issues/new?template=resource.yml)._
+
+## Playgrounds & Reproducible Demos
+
+_No entries yet. [Recommend a Playgrounds & Reproducible Demos resource](https://github.com/rudy2steiner/awesome-jev-hub/issues/new?template=resource.yml)._
+
+## Benchmarks & Evidence
+
+_No entries yet. [Recommend a Benchmarks & Evidence resource](https://github.com/rudy2steiner/awesome-jev-hub/issues/new?template=resource.yml)._
+
+## Failures & Limitations
+
+_No entries yet. [Recommend a Failures & Limitations resource](https://github.com/rudy2steiner/awesome-jev-hub/issues/new?template=resource.yml)._
+
+## Learn
+
+_No entries yet. [Recommend a learning resource](https://github.com/rudy2steiner/awesome-jev-hub/issues/new?template=resource.yml)._
+
+## Open Alternatives
+
+_No entries yet. [Recommend an Open Alternatives resource](https://github.com/rudy2steiner/awesome-jev-hub/issues/new?template=resource.yml)._
+
+## Ecosystem Radar
+
+_No entries yet. [Recommend an Ecosystem Radar resource](https://github.com/rudy2steiner/awesome-jev-hub/issues/new?template=resource.yml)._
+
+## Contributing
+
+Contributions are welcome. Use the [resource submission form](https://github.com/rudy2steiner/awesome-jev-hub/issues/new?template=resource.yml) if you want the maintainers to place an item for you, or follow the [Contribution Guide](./CONTRIBUTING.md) to add one resource directly to an existing category.
