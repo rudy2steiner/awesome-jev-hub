@@ -231,6 +231,7 @@ This section is maintained from first-party TypeSafe sources.
 
 ## Ecosystem Radar
 
+- [Jev in the Wild](https://arxiv.org/abs/2609.30216) — Analyzes 2,170 public GitHub Jev projects to map early ecosystem growth, application domains, and decision-use patterns; checked 2026-09-29.
 - [TypeSafe on X](https://x.com/typesafeai) — Tracks first-party Jev launch and ecosystem updates from the official TypeSafe account; checked 2026-09-21.
 - [TypeSafeAI on GitHub](https://github.com/TypeSafeAI) — Surfaces newly published Jev repositories and community experiments under the TypeSafeAI organization; checked 2026-09-21.
 - [awesome-jev](https://github.com/yibie/awesome-jev) — Maintains a broad companion index of Jev projects and discussions whose entries are useful as discovery leads rather than quality endorsements.
